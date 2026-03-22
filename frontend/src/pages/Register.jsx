@@ -10,7 +10,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   
   const navigate = useNavigate();
-  const API = 'http://localhost:3000'; // LOCALHOST SETUP
+  const API = 'https://to-do-list-bthl.onrender.com';
 
   const handleRegister = async (e) => {
     e.preventDefault();

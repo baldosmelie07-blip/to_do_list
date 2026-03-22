@@ -11,7 +11,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   
-  const API = 'http://localhost:3000'; 
+  const API = 'https://to-do-list-bthl.onrender.com';
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

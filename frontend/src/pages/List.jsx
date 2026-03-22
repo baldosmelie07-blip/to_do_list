@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const API = 'http://localhost:3000';
+const API = 'https://to-do-list-bthl.onrender.com';
 axios.defaults.withCredentials = true;
 
 function List() {

@@ -12,8 +12,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// UPDATE: Added your specific Vercel URL
 const allowedOrigins = [
   'http://localhost:5173',
+  'https://to-do-list-five-theta-27.vercel.app',
   'https://to-do-list-rho-sable-68.vercel.app'
 ];
 
@@ -40,9 +42,9 @@ app.use(
     saveUninitialized: false,
     proxy: true, 
     cookie: {
-      secure: process.env.NODE_ENV === 'production', 
+      secure: true, // Always true for production
       httpOnly: true,
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', 
+      sameSite: 'none', // Required for cross-site (Vercel to Render)
       maxAge: 24 * 60 * 60 * 1000 
     }
   })
@@ -53,8 +55,7 @@ const isAuthenticated = (req, res, next) => {
   res.status(401).json({ error: "Unauthorized access. Please login." });
 };
 
-// --- AUTH ROUTES ---
-
+// --- ROUTES REMAIN THE SAME AS PER YOUR LOGIC ---
 app.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -94,8 +95,8 @@ app.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) return res.status(500).json({ success: false });
     res.clearCookie('todo_sid', { 
-      secure: process.env.NODE_ENV === 'production', 
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' 
+      secure: true, 
+      sameSite: 'none' 
     });
     res.json({ success: true });
   });
